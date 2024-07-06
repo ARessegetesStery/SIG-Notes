@@ -1,5 +1,5 @@
 \NeedsTeXFormat{LaTeX2e}[1994/06/01]
-\ProvidesPackage{refalg}[2023/08/26 Algebra Notes Common Header]
+\ProvidesPackage{refalg}[2023/08/26 Notes Common Header]
 
 \RequirePackage{booktabs}
 \RequirePackage{geometry}
@@ -24,6 +24,7 @@
 \RequirePackage{xspace}
 \RequirePackage{enumitem}
 \RequirePackage[new]{old-arrows}
+\RequirePackage[backend=biber,style=alphabetic]{biblatex}
 
 \RequirePackage{thmtools}
 
@@ -31,7 +32,20 @@
 \definecolor{lightgreen}{rgb}{.01,.64,.73}
 \definecolor{lightblue}{rgb}{.18,.53,.87}
 \definecolor{lightpurple}{rgb}{.45,.30,.70}
-\RequirePackage[colorlinks,linkcolor=lightgreen,urlcolor=lightblue]{hyperref}
+\definecolor{darkblue}{HTML}{0077b6}
+\definecolor{darkgray}{RGB}{50,50,50}
+\definecolor{darkpurple}{HTML}{9e60ee}
+\definecolor{dimpurple}{HTML}{5e60ce}
+\definecolor{darkgreen}{HTML}{588157}
+\definecolor{darkbrown}{HTML}{7f4f24}
+\definecolor{deepblue}{HTML}{0652DD}
+
+\RequirePackage[
+  colorlinks,
+  linkcolor=lightgreen,
+  citecolor=lightgreen,
+  urlcolor=lightblue
+]{hyperref}
 
 % \geometry{a4paper,left=0.5in,right=0.5in,top=1in,bottom=1in}
 % \linespread{1.4}
@@ -116,14 +130,6 @@
 \renewcommand{\implies}{\ \ensuremath{\Longrightarrow}\ }
 
 \theoremstyle{definition}
-
-\definecolor{darkblue}{HTML}{0077b6}
-\definecolor{darkgray}{RGB}{50,50,50}
-\definecolor{darkpurple}{HTML}{9e60ee}
-\definecolor{dimpurple}{HTML}{5e60ce}
-\definecolor{darkgreen}{HTML}{588157}
-\definecolor{darkbrown}{HTML}{7f4f24}
-\definecolor{deepblue}{HTML}{0652DD}
 
 \def\thmstyle#1#2
 {
@@ -222,16 +228,16 @@
     \rhead{#3}
 }
 
-\def\Makepagesectionhead#1#2#3{
-    \title{\vspace{-1.5cm} #1 - #2}
-    \author{#3}
+\def\Makepagesectionhead#1#2{
+    \title{\vspace{-1.5cm} #1}
+    \author{#2}
     \date{\today}\maketitle
     \pagestyle{fancy}
     \setlength{\parskip}{1em}
     \setlength{\parindent}{0em}
-    \lhead{#2}
+    \lhead{#1}
     \chead{\leftmark}
-    \rhead{#3}
+    \rhead{#2}
 }
 
 \pagestyle{fancy}
