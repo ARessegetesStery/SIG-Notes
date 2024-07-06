@@ -9,7 +9,65 @@
 
 \section{Prelimiaries}
 
+\textstart
+To get familiar with the context, first present the definition of the various boundary conditions:
+
+\begin{definition}
+    Given an (ordinary/partial) differential equation with domain $\Omega$,
+    \begin{itemize}
+        \item A \textbf{Dirichlet boundary condition} fixes the value of solution on the boundary of domain. 
+        \item A \textbf{Neumann boundary condition} fixes the derivative (normal) applied at the boundary of the domain.
+        \item A \textbf{Robin boundary condition} is a weighed combination of the previous two. Explicitly, for given \emph{functions} $a, b, g$ defined on $\partial \Omega$ the associated Robin boundary condition is (for target function $f$)
+        \[
+            a\ f + b\ \partial_n f = g \qquad \text{on $\partial \Omega$}
+        \]
+        where $\partial_n(\cdot)$ denotes the normal derivative.
+    \end{itemize}
+\end{definition}
+
+\textstart
+The followings are a collection some purely Mathematical definitions for formal description of objects introduced. They are not necessarily essential for understanding the objects, and serves as a reminder merely.
+
+\begin{definition}[$\sigma$-algebra]
+    Given a set $X$ with $\P(X)$ its power set, a subset $\Sigma \subseteq P(X)$ is a \textbf{$\sigma$-algebra} if it satisfies
+    \begin{enumerate}[label=\arabic*)]
+        \item $X \in \Sigma$.
+        \item $\Sigma$ is closed under complementation.
+        \item $\Sigma$ is closed under countable unions.
+    \end{enumerate}
+\end{definition}
+\nogap
+\begin{remark}
+    By applying De Morgan's Law directly, $\sigma$-algebras are also closed under countable intersections.
+\end{remark}
+
+\begin{definition}[Borel (Measurable) Space]
+    A \textbf{Borel Space}, (or Measurable Space), is a tuple $(X, \mathcal{F})$ where $\mathcal{F}$ is a $\sigma$-algebra on $X$.
+\end{definition}
+\nogap
+\begin{remark}
+    This needs to be distinguished from the \emph{measure space}: no measure is required for a measurable space. The ``measurable'' here refers to the sets in $\mathcal{F}$ are ``measured'', or considered, in $\P(X)$.
+\end{remark}
+
+\begin{definition}[Stochastic Process]
+    A \textbf{stocahstic process} on a probability space $(\Omega, \mathcal{F}, \Pr)$ with a measureable space $(S, \Sigma)$ and index set $T$ (often time, subset of $\R$) is a collection of $S$-valued random variables with evaluations $\{ X(t) \mid t \in T \}$.
+\end{definition}
+
 \section{Walk On Spheres \cite{WalkOnSphere}}
+
+\begin{definition}[Brownian Motion]
+    A \textbf{$\R^d$-valued Brownian motion} starting at $x \in \R^d$ is a stochastic process $\{ B(t) \mid t \in T := \R_{\geq 0} \}$ satisfying the following properties:
+    \begin{enumerate}[label=\arabic*)]
+        \item \emph{Anchor:} $B(0) = x$.
+        \item \emph{Independent incrementals:} for any increasing sequence $(t_n)_{n \in \Z_{\geq 0}}$ on $T$, $\{ B(t_{i+1}) - B(t_i) \mid i \in \Z_{\geq 0} \}$ are independent random variables.
+        \item \emph{Normality in each step:} For all $t \geq 0, h > 0$, the incremental $B(t + h) - B(t)$ follows a normal distribution $N(0, h)$.
+        \item \emph{Continuity:} The function $t \mapsto B(t)$ is almost surely (i.e., has probability 1 of being) continuous.
+    \end{enumerate}
+\end{definition}
+\nogap
+\begin{remark}
+    Property 4) in the definition actually loosens the definition; but the discontinuity does not interfere with any numerical treatment, as it happens with probability 0.
+\end{remark}
 
 \section{Boundary Value Caching for \emph{WoS} \cite{BVCWoS}}
 
