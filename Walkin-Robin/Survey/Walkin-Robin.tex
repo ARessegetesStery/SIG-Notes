@@ -45,7 +45,7 @@ The followings are a collection some purely Mathematical definitions for formal 
 \end{remark}
 
 \begin{definition}[Borel (Measurable) Space]
-    A \textbf{Borel Space}, (or Measurable Space), is a tuple $(X, \mathcal{F})$ where $\mathcal{F}$ is a $\sigma$-algebra on $X$.
+    A \textbf{Borel space}, (or \textbf{measurable space}), is a tuple $(X, \mathcal{F})$ where $\mathcal{F}$ is a $\sigma$-algebra on $X$.
 \end{definition}
 \nogap
 \begin{remark}
@@ -123,16 +123,50 @@ It is then clear, that given a Brownian motion with random variable $\omega = \o
 \subsection{Obtaining Solution from Spherical Process}
 
 \textstart
-The solution of the Dirichlet problem associated to function $f$ is computed directly using the following theorems, whose proofs are cited from \cite{Kakutani1944}. Notice that the ``measure'' in the integration, the probability implicitly uses the ``sphere process'' introduced above.
+The solution of the Dirichlet problem associated to function $f$ is computed directly using the following result. A complete context of the result can be found in \cite{Kakutani1944}. Notice that the ``measure'' in the integration involves the aforementioned Brownian motion. \hyperlink{https://willierushrush.github.io/posts/2021/08/dirichlet-problem}{This blog} provides a good excursion into the topic. 
+
+\begin{proposition}
+    Given a Dirichlet problem defined on a domain $D$ with boundary values $f(\zeta)$ for $\zeta \in \partial D$, for any $x_0 \in D$, the solution $u$ of the Dirichlet problem evaluates to
+    \[
+        u(x_0) = \int_{\partial D} \Pr(x_0, \zeta, D) f(\zeta) \d \zeta \qquad \forall x_0 \in D
+    \]
+    where $\Pr(x_0, \zeta, D)$ is the probability density function of a Brownian motion starting at $x_0$ intersects for the first time with $\partial D$ at $\zeta$.
+\end{proposition}
+
+\begin{proof}
+    
+\end{proof}
+
+\begin{remark}
+    The probability function $\Pr(x_0, \zeta, D) \d \zeta =: \d \omega$ defines a measure, and is called the \underline{harmonic measure}.
+\end{remark}
+
+\textstart
+Numerically, the quadrature can be approximated via applying Monte Carlo analysis on the spherical process.
 
 \subsection{Convergence Analysis}
 
 \textstart
-This section dedicates to prove the following theorem, with some closely related facts:
+First we need to show that the spherical process indeed (almost always, i.e. with probability 1) converges.
+
+\begin{proposition}
+    
+\end{proposition}
+
+\begin{proof}[Intuition]
+    
+\end{proof}
+
+\textstart
+Now we show the order of convergence:
 
 \begin{theorem}
     Let $N$ be the dimension s.t. the problem domain $\Omega \subseteq \R^N$. Then the steps required for convergence of the method is linear in $N$. 
 \end{theorem}
+
+\begin{proof}
+    
+\end{proof}
 
 \section{Boundary Value Caching for \emph{WoS} \cite{BVCWoS}}
 
