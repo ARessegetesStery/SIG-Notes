@@ -7,7 +7,10 @@
 
 \Makepagesectionhead{Walking On Stars with Boundary Conditions}{ARessegetes Stery}
 
-\section{Prelimiaries}
+\tableofcontents
+\clearpage
+
+\section{Preliminaries}
 
 \textstart
 To get familiar with the context, first present the definition of the various boundary conditions:
@@ -26,13 +29,13 @@ To get familiar with the context, first present the definition of the various bo
 \end{definition}
 
 \textstart
-The followings are a collection some purely Mathematical definitions for formal description of objects introduced. They are not necessarily essential for understanding the objects, and serves as a reminder merely.
+The followings are a collection some purely Mathematical definitions for formal description of objects introduced. They are not necessarily essential for understanding the objects, and serves as a reminder merely. You are welcome (and suggested) to skip this part, and refer back to these definitions when encountering anything unfamiliar.
 
 \begin{definition}[$\sigma$-algebra]
     Given a set $X$ with $\P(X)$ its power set, a subset $\Sigma \subseteq P(X)$ is a \textbf{$\sigma$-algebra} if it satisfies
     \begin{enumerate}[label=\arabic*)]
         \item $X \in \Sigma$.
-        \item $\Sigma$ is closed under complementation.
+        \item $\Sigma$ is closed under complement.
         \item $\Sigma$ is closed under countable unions.
     \end{enumerate}
 \end{definition}
@@ -50,10 +53,22 @@ The followings are a collection some purely Mathematical definitions for formal 
 \end{remark}
 
 \begin{definition}[Stochastic Process]
-    A \textbf{stocahstic process} on a probability space $(\Omega, \mathcal{F}, \Pr)$ with a measureable space $(S, \Sigma)$ and index set $T$ (often time, subset of $\R$) is a collection of $S$-valued random variables with evaluations $\{ X(t) \mid t \in T \}$.
+    A \textbf{stochastic process} on a probability space $(\Omega, \mathcal{F}, \Pr)$ with a measurable space $(S, \Sigma)$ and index set $T$ (often time, subset of $\R$) is a collection of $S$-valued random variables with evaluations $\{ X(t) \mid t \in T \}$.
 \end{definition}
 
-\section{Walk On Spheres \cite{WalkOnSphere}}
+\section{Solving Dirichlet Problems by ``Walk On Spheres'' \cite{WalkOnSphere}}
+
+Due to the complexity of algebraic manipulation/approximation, some advanced results will be used as black box, and will be marked with {\color{darkpurple} purple}. Please refer to the original paper for details. Also, results with detailed proofs in the original paper will be reasoned with the ``intuitions''; and important results presented without proof in the paper will be explained in detail. 
+
+\begin{definition}[Harmonic Function]
+    A twice continuously differentiable $\R$-valued function $f: U \to \R$ is \textbf{harmonic} if $\nabla^2 f \equiv 0$ on $U$.
+\end{definition}
+\nogap
+\begin{definition}[Dirichlet Problem]
+    Given a domain (for simplicity assume that this is simply-connected) $D$ with boundary $\partial D$, a \textbf{Dirichlet problem} associated to a function $f$ continuously defined on $\partial D$ is to find the function $u$ defined on $R$ s.t. $u$ and $f$ coincide on $\partial D$.
+\end{definition}
+
+\subsection{Discretization of Brownian Motion}
 
 \begin{definition}[Brownian Motion]
     A \textbf{$\R^d$-valued Brownian motion} starting at $x \in \R^d$ is a stochastic process $\{ B(t) \mid t \in T := \R_{\geq 0} \}$ satisfying the following properties:
@@ -68,6 +83,56 @@ The followings are a collection some purely Mathematical definitions for formal 
 \begin{remark}
     Property 4) in the definition actually loosens the definition; but the discontinuity does not interfere with any numerical treatment, as it happens with probability 0.
 \end{remark}
+\nogap
+\begin{notation}
+For simplicity, the evaluation of Brownian motion $B$ will be denoted as $X(t, \omega)$ with $\omega \in \R$ a random variable specifying the exact value of $B(t)$. That is, for $X(t, \omega) \in \R^N$. 
+\end{notation}
+
+\textstart
+In a domain $D$, given an arbitrary Brownian motion $B$, it can be discretized into an infinite sequence of points (associated to the corresponding time index $t$), where the distribution (w.r.t. $t$) is preserved:
+
+\begin{definition}[Maximum Sphere]
+    Let $D$ be an arbitrary domain, and $x \in D$ be an arbitrary point. Then the \textbf{maximum sphere} centered at $x$ in $D$, denoted $\bm{K}_D(x)$, is the sphere
+    \[
+        S(x, \inf_{x_0 \in \partial D} \{ \norm{x - x_0} \})
+    \]
+    Its boundary (surface of the sphere) is denoted as $\overline{\bm{K}}_D(x)$.
+\end{definition}
+\nogap
+\begin{definition}[Successive Intersections]
+    Given a Brownian motion $B$ with arbitrary ambient domain $D$, its \textbf{successive intersections} w.r.t. $D$ is a (possibly, and often, infinite) sequence $P_n(B(0), \bm{K}_D(P_{n-1}), \omega)$ defined as follows:
+    \begin{enumerate}
+        \item $P_0(B(0), -, \omega) := B(0)$.
+        \item $P_{n}(B(0), \overline{\bm{K}}(P_{n-1}), \omega)$ is the point where $X(t, \omega)$ for the first time intersects with $\overline{\bm{K}}_D(P_{n-1})$. 
+    \end{enumerate}
+\end{definition}
+
+\textstart
+Notice that by the randomness defined in the Brownian motion, the distribution of $P_n$ on $\overline{\bm{K}}_D(P_{n-1})$ is uniform; this is also a Markov chain since the local direction $P_n - P_{n-1}$ is uniformly random, and is independent over $n$ (by requirement 2) in the definition of Brownian motion). Therefore this can be ``perfectly simulated'' with the following process:
+
+\begin{definition}[Spherical Process]
+    Given a domain $D$ with boundary $\partial D$ and an arbitrary point $x \in D$, the \textbf{spherical process} defines a sequence of points $P_n(x, \phi)$ where $\phi$ is the random variable, as follows:
+    \begin{enumerate}
+        \item $P_0(x, \phi) := x$.
+        \item For all $i \in \Z_{\geq 1}$, designate $P_i$ uniformly randomly from $\overline{\bm{K}}_D (P_{i-1})$. 
+    \end{enumerate}
+\end{definition}
+
+It is then clear, that given a Brownian motion with random variable $\omega = \omega_0$ it corresponds uniquely to a spherical process with random variable $\phi = \phi(\omega_0)$; and vice versa. This allows application of the results proved for Brownian motion to obtain the solution of the Dirichlet problem; and use Monte Carlo methods on the spherical process for numerical quadrature.
+
+\subsection{Obtaining Solution from Spherical Process}
+
+\textstart
+The solution of the Dirichlet problem associated to function $f$ is computed directly using the following theorems, whose proofs are cited from \cite{Kakutani1944}. Notice that the ``measure'' in the integration, the probability implicitly uses the ``sphere process'' introduced above.
+
+\subsection{Convergence Analysis}
+
+\textstart
+This section dedicates to prove the following theorem, with some closely related facts:
+
+\begin{theorem}
+    Let $N$ be the dimension s.t. the problem domain $\Omega \subseteq \R^N$. Then the steps required for convergence of the method is linear in $N$. 
+\end{theorem}
 
 \section{Boundary Value Caching for \emph{WoS} \cite{BVCWoS}}
 
