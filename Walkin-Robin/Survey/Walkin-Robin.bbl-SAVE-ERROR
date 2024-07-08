@@ -1,0 +1,270 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 3.3 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated by
+% biber as required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+
+\refsection{0}
+  \datalist[entry]{anyt/global//global/global/global}
+    \entry{Kakutani1944}{article}{}{}
+      \name{author}{1}{}{%
+        {{hash=967c0b1a2ec6a954c1c09d7e1493793b}{%
+           family={Kakutani},
+           familyi={K\bibinitperiod},
+           given={Shizuo},
+           giveni={S\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Project Euclid}%
+      }
+      \strng{namehash}{967c0b1a2ec6a954c1c09d7e1493793b}
+      \strng{fullhash}{967c0b1a2ec6a954c1c09d7e1493793b}
+      \strng{fullhashraw}{967c0b1a2ec6a954c1c09d7e1493793b}
+      \strng{bibnamehash}{967c0b1a2ec6a954c1c09d7e1493793b}
+      \strng{authorbibnamehash}{967c0b1a2ec6a954c1c09d7e1493793b}
+      \strng{authornamehash}{967c0b1a2ec6a954c1c09d7e1493793b}
+      \strng{authorfullhash}{967c0b1a2ec6a954c1c09d7e1493793b}
+      \strng{authorfullhashraw}{967c0b1a2ec6a954c1c09d7e1493793b}
+      \field{labelalpha}{Kak44}
+      \field{sortinit}{K}
+      \field{sortinithash}{c02bf6bff1c488450c352b40f5d853ab}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{issn}{0386-2194}
+      \field{journaltitle}{Proceedings of the Japan Academy, Series A, Mathematical Sciences}
+      \field{month}{1}
+      \field{number}{10}
+      \field{title}{Two-dimensional Brownian motion and harmonic functions}
+      \field{volume}{20}
+      \field{year}{1944}
+      \verb{doi}
+      \verb 10.3792/pia/1195572706
+      \endverb
+      \verb{urlraw}
+      \verb http://dx.doi.org/10.3792/pia/1195572706
+      \endverb
+      \verb{url}
+      \verb http://dx.doi.org/10.3792/pia/1195572706
+      \endverb
+    \endentry
+    \entry{BVCWoS}{article}{}{}
+      \name{author}{4}{}{%
+        {{hash=702c482af0c765dbc53293d373ccefb2}{%
+           family={Miller},
+           familyi={M\bibinitperiod},
+           given={Bailey},
+           giveni={B\bibinitperiod}}}%
+        {{hash=2f14a29767d9121420ab32c1dc4fae87}{%
+           family={Sawhney},
+           familyi={S\bibinitperiod},
+           given={Rohan},
+           giveni={R\bibinitperiod}}}%
+        {{hash=581404e2a130ce3b3520c26831476f4e}{%
+           family={Crane},
+           familyi={C\bibinitperiod},
+           given={Keenan},
+           giveni={K\bibinitperiod}}}%
+        {{hash=99128148aef8ccc43947eaf824e8b614}{%
+           family={Gkioulekas},
+           familyi={G\bibinitperiod},
+           given={Ioannis},
+           giveni={I\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Association for Computing Machinery (ACM)}%
+      }
+      \strng{namehash}{09f01060ba011a4d4d3d29d4121ee16c}
+      \strng{fullhash}{55676f156795c8c67aaf68519c5a1383}
+      \strng{fullhashraw}{55676f156795c8c67aaf68519c5a1383}
+      \strng{bibnamehash}{09f01060ba011a4d4d3d29d4121ee16c}
+      \strng{authorbibnamehash}{09f01060ba011a4d4d3d29d4121ee16c}
+      \strng{authornamehash}{09f01060ba011a4d4d3d29d4121ee16c}
+      \strng{authorfullhash}{55676f156795c8c67aaf68519c5a1383}
+      \strng{authorfullhashraw}{55676f156795c8c67aaf68519c5a1383}
+      \field{extraname}{1}
+      \field{labelalpha}{Mil+23}
+      \field{sortinit}{M}
+      \field{sortinithash}{4625c616857f13d17ce56f7d4f97d451}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{issn}{1557-7368}
+      \field{journaltitle}{ACM Transactions on Graphics}
+      \field{month}{7}
+      \field{number}{4}
+      \field{title}{Boundary Value Caching for Walk on Spheres}
+      \field{volume}{42}
+      \field{year}{2023}
+      \field{pages}{1\bibrangedash 11}
+      \range{pages}{11}
+      \verb{doi}
+      \verb 10.1145/3592400
+      \endverb
+      \verb{urlraw}
+      \verb http://dx.doi.org/10.1145/3592400
+      \endverb
+      \verb{url}
+      \verb http://dx.doi.org/10.1145/3592400
+      \endverb
+    \endentry
+    \entry{WalkinRobin}{article}{}{}
+      \name{author}{4}{}{%
+        {{hash=702c482af0c765dbc53293d373ccefb2}{%
+           family={Miller},
+           familyi={M\bibinitperiod},
+           given={Bailey},
+           giveni={B\bibinitperiod}}}%
+        {{hash=2f14a29767d9121420ab32c1dc4fae87}{%
+           family={Sawhney},
+           familyi={S\bibinitperiod},
+           given={Rohan},
+           giveni={R\bibinitperiod}}}%
+        {{hash=581404e2a130ce3b3520c26831476f4e}{%
+           family={Crane},
+           familyi={C\bibinitperiod},
+           given={Keenan},
+           giveni={K\bibinitperiod}}}%
+        {{hash=99128148aef8ccc43947eaf824e8b614}{%
+           family={Gkioulekas},
+           familyi={G\bibinitperiod},
+           given={Ioannis},
+           giveni={I\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Association for Computing Machinery (ACM)}%
+      }
+      \strng{namehash}{09f01060ba011a4d4d3d29d4121ee16c}
+      \strng{fullhash}{55676f156795c8c67aaf68519c5a1383}
+      \strng{fullhashraw}{55676f156795c8c67aaf68519c5a1383}
+      \strng{bibnamehash}{09f01060ba011a4d4d3d29d4121ee16c}
+      \strng{authorbibnamehash}{09f01060ba011a4d4d3d29d4121ee16c}
+      \strng{authornamehash}{09f01060ba011a4d4d3d29d4121ee16c}
+      \strng{authorfullhash}{55676f156795c8c67aaf68519c5a1383}
+      \strng{authorfullhashraw}{55676f156795c8c67aaf68519c5a1383}
+      \field{extraname}{2}
+      \field{labelalpha}{Mil+24}
+      \field{sortinit}{M}
+      \field{sortinithash}{4625c616857f13d17ce56f7d4f97d451}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{ACM Transactions on Graphics}
+      \field{month}{7}
+      \field{number}{4}
+      \field{title}{Walkin' Robin: Walk on Stars with Robin Boundary Conditions}
+      \field{year}{2024}
+      \field{pages}{1\bibrangedash 18}
+      \range{pages}{18}
+      \verb{urlraw}
+      \verb https://imaging.cs.cmu.edu/walk_on_stars_robin/index.html
+      \endverb
+      \verb{url}
+      \verb https://imaging.cs.cmu.edu/walk_on_stars_robin/index.html
+      \endverb
+    \endentry
+    \entry{WalkOnSphere}{article}{}{}
+      \name{author}{1}{}{%
+        {{hash=1b50858d53381854180c6f662a8fba34}{%
+           family={Muller},
+           familyi={M\bibinitperiod},
+           given={Mervin\bibnamedelima E.},
+           giveni={M\bibinitperiod\bibinitdelim E\bibinitperiod}}}%
+      }
+      \strng{namehash}{1b50858d53381854180c6f662a8fba34}
+      \strng{fullhash}{1b50858d53381854180c6f662a8fba34}
+      \strng{fullhashraw}{1b50858d53381854180c6f662a8fba34}
+      \strng{bibnamehash}{1b50858d53381854180c6f662a8fba34}
+      \strng{authorbibnamehash}{1b50858d53381854180c6f662a8fba34}
+      \strng{authornamehash}{1b50858d53381854180c6f662a8fba34}
+      \strng{authorfullhash}{1b50858d53381854180c6f662a8fba34}
+      \strng{authorfullhashraw}{1b50858d53381854180c6f662a8fba34}
+      \field{labelalpha}{Mul56}
+      \field{sortinit}{M}
+      \field{sortinithash}{4625c616857f13d17ce56f7d4f97d451}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{The Annals of Mathematical Statistics}
+      \field{month}{9}
+      \field{number}{3}
+      \field{title}{Some continuous Monte Carlo methods for the Dirichlet problem}
+      \field{volume}{27}
+      \field{year}{1956}
+      \field{pages}{569\bibrangedash 589}
+      \range{pages}{21}
+      \verb{doi}
+      \verb 10.1214/aoms/1177728169
+      \endverb
+    \endentry
+    \entry{WalkOnStars}{article}{}{}
+      \name{author}{4}{}{%
+        {{hash=2f14a29767d9121420ab32c1dc4fae87}{%
+           family={Sawhney},
+           familyi={S\bibinitperiod},
+           given={Rohan},
+           giveni={R\bibinitperiod}}}%
+        {{hash=702c482af0c765dbc53293d373ccefb2}{%
+           family={Miller},
+           familyi={M\bibinitperiod},
+           given={Bailey},
+           giveni={B\bibinitperiod}}}%
+        {{hash=99128148aef8ccc43947eaf824e8b614}{%
+           family={Gkioulekas},
+           familyi={G\bibinitperiod},
+           given={Ioannis},
+           giveni={I\bibinitperiod}}}%
+        {{hash=581404e2a130ce3b3520c26831476f4e}{%
+           family={Crane},
+           familyi={C\bibinitperiod},
+           given={Keenan},
+           giveni={K\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Association for Computing Machinery (ACM)}%
+      }
+      \strng{namehash}{1a79943f7173870c3084734502fbe4ac}
+      \strng{fullhash}{37d53c41c6845ba9797f680eaf32d8f9}
+      \strng{fullhashraw}{37d53c41c6845ba9797f680eaf32d8f9}
+      \strng{bibnamehash}{1a79943f7173870c3084734502fbe4ac}
+      \strng{authorbibnamehash}{1a79943f7173870c3084734502fbe4ac}
+      \strng{authornamehash}{1a79943f7173870c3084734502fbe4ac}
+      \strng{authorfullhash}{37d53c41c6845ba9797f680eaf32d8f9}
+      \strng{authorfullhashraw}{37d53c41c6845ba9797f680eaf32d8f9}
+      \field{labelalpha}{Saw+23}
+      \field{sortinit}{S}
+      \field{sortinithash}{b164b07b29984b41daf1e85279fbc5ab}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{issn}{1557-7368}
+      \field{journaltitle}{ACM Transactions on Graphics}
+      \field{month}{7}
+      \field{number}{4}
+      \field{title}{Walk on Stars: A Grid-Free Monte Carlo Method for PDEs with Neumann Boundary Conditions}
+      \field{volume}{42}
+      \field{year}{2023}
+      \field{pages}{1\bibrangedash 20}
+      \range{pages}{20}
+      \verb{doi}
+      \verb 10.1145/3592398
+      \endverb
+      \verb{urlraw}
+      \verb http://dx.doi.org/10.1145/3592398
+      \endverb
+      \verb{url}
+      \verb http://dx.doi.org/10.1145/3592398
+      \endverb
+    \endentry
+  \enddatalist
+\endrefsection
+\endinput
+

@@ -125,7 +125,7 @@ It is then clear, that given a Brownian motion with random variable $\omega = \o
 \textstart
 The solution of the Dirichlet problem associated to function $f$ is computed directly using the following result. A complete context of the result can be found in \cite{Kakutani1944}. Notice that the ``measure'' in the integration involves the aforementioned Brownian motion. \hyperlink{https://willierushrush.github.io/posts/2021/08/dirichlet-problem}{This blog} provides a good excursion into the topic. 
 
-\begin{proposition}
+\begin{proposition}[Kakutani's Principle]
     Given a Dirichlet problem defined on a domain $D$ with boundary values $f(\zeta)$ for $\zeta \in \partial D$, for any $x_0 \in D$, the solution $u$ of the Dirichlet problem evaluates to
     \[
         u(x_0) = \int_{\partial D} \Pr(x_0, \zeta, D) f(\zeta) \d \zeta \qquad \forall x_0 \in D
@@ -134,7 +134,7 @@ The solution of the Dirichlet problem associated to function $f$ is computed dir
 \end{proposition}
 
 \begin{proof}
-    
+    {\color{red} TODO: check math stackexchange.}
 \end{proof}
 
 \begin{remark}
@@ -149,23 +149,51 @@ Numerically, the quadrature can be approximated via applying Monte Carlo analysi
 \textstart
 First we need to show that the spherical process indeed (almost always, i.e. with probability 1) converges.
 
-\begin{proposition}
-    
+\begin{proposition}[{\color{darkpurple} \cite{WalkOnSphere} Theorem 3.6}]
+    The sequence $(P_i(x_0 [:= B(0)], -, D))_{i \in \Z_{\geq 0}}$ obtained by the spherical process converges, with probability 1, to a point on $\partial D$, and coincides with the first intersection between $B(t)$ and $\partial D$.
 \end{proposition}
 
 \begin{proof}[Intuition]
-    
+    By the analogy between the spherical process and random walk, $B(t)$ intersects $\partial D$ at some finite time $t_0$ for the first time with probability 1. Then:
+    \begin{enumerate}
+        \item Consider the time sequence $T_i$ taking values in $\R$ specifying the time of Brownian motion corresponding to the spherical process fixed by sequence $(P_i)_{i \in \Z_{\geq 0}}$ coming across the point $P_i$. It is strictly increasing, and bounded above by $t_0$, which implies that it has a limit, denoted $\bar{t_0}$. Therefore \emph{$(P_i)_{i \in \Z_{\geq 0}}$ converges}.
+        \item Consider $\bar{P} = B(\bar{t_0})$ which by definition of $t_0$ must be either in interior of $D$ or on $\partial D$. If $\bar{P}$ is in the interior, then $\bar{K}(\bar{P})$ has nonzero diameter. Specifically, choosing $\varepsilon$ small enough gives, for any $n$ large enough s.t. $P_n \to \bar{P}$, $\norm{P_n - P_{n+1}} > \varepsilon$ with probability 1, where $P_{n+1}$ is the resulting point of iterating again using the spherical process. Therefore \emph{$(P_i)_{i \in \Z_{\geq 0}}$ converges to the interior of $D$}.
+        \item The spherical process cannot produce points outside $D$; and by the minimality of $t_0$ this gives the coincidence between $\lim_{n \to \infty} P_n$ and $B(t_0)$. 
+    \end{enumerate}
 \end{proof}
 
 \textstart
 Now we show the order of convergence:
 
-\begin{theorem}
-    Let $N$ be the dimension s.t. the problem domain $\Omega \subseteq \R^N$. Then the steps required for convergence of the method is linear in $N$. 
+\begin{theorem}[{\color{darkpurple} \cite{WalkOnSphere} Chapter 6}]
+    Let $N$ be the dimension s.t. the problem domain $\Omega \subseteq \R^N$. Then the steps required for convergence of the method is linear in $N$ if $D$ is convex. 
 \end{theorem}
 
-\begin{proof}
-    
+\begin{proof}[Sketch of Proof]
+    First we show this for a simplified scenario. Consider the case where $\partial D$ is a hyperplane in $\R^N$, i.e. a plane identifiable with $\R^{N - 1}$. Define the coordinate system for $\R^N$ as $(y, \cdots)$ s.t. for $P_i = (y_i, \cdots)$, the distance from $P_i$ to $\partial D$ is $y_i$. Now for a starting point of the spherical process $P_0 = (y_0, \cdots)$ we consider the sequence $(y_i)_{i \in \Z_{\geq 0}}$:
+
+    \begin{paraindent}
+        \begin{lemma}[{\color{darkpurple} \cite{WalkOnSphere} Theorem 6.1, 6.2}]
+            Under the above setup, we have the asymptotic result for $N \to \infty$
+            \[
+                \E\left( \left. \log \frac{y_{i+1}}{y_i} \right| N \right) \sim -\frac{1}{2N}
+            \]
+        \end{lemma}
+
+        \begin{proof}[Sketch of Proof]
+            First notice that the $y_{i}$s are related via $\frac{y_{i+1}}{y_i} = 1 - \cos \theta_{i+1}$, where $\theta_{i+1}$ is the angle formed by the normal of $\partial D$ and $(P_{i+1} - P_i)$. Integrating the probability on the sphere gives
+            \[
+                \E\left( \left. \log \frac{y_{i+1}}{y_i} \right| N \right) = \frac{\int_{0}^{\pi} \log (1 - \cos \theta) \sin^{N-2} \theta \d \theta}{\int_0^{\pi} \sin^{N-2} \theta \d \theta}
+            \]
+            Manipulating the expression above gives the asymptotic. Refer to the original paper for details.
+        \end{proof}
+    \end{paraindent}
+
+    Then the expected steps of convergence is 
+    \[
+        \frac{1}{ \abs{\left( \left. \log \frac{y_{i+1}}{y_i} \right| N \right)}} \sim N = O(N) 
+    \]
+    Now we seek to extend this to general convex sets. For each $P_i$ consider the point $\zeta_i \in \partial D$ where the minimum distance $\text{radius}(P_i)$ is realized. Let $\partial D_i$ be the tangent plane of $\partial D$ at $\zeta_i$, with the corresponding distance coordinate $y_{(\cdot)}^{(i)}$. Notice that $y_{i+1}^{(i)} \geq y_{i+1}^{(i+1)}$ by minimality. Therefore $y_{(\cdot)}^{(0)}$, which converges to 0 in $O(N)$ steps, gives an upper bound for number of steps required for convergence. This implies the actual convergence order is also $O(N)$. 
 \end{proof}
 
 \section{Boundary Value Caching for \emph{WoS} \cite{BVCWoS}}
@@ -175,4 +203,7 @@ Now we show the order of convergence:
 \section{Extending \emph{WoSt} to Robin Boundary Conditions\cite{WalkinRobin}}
 
 \printbibliography
+
+\section{Appendix A - Properties of Harmonic Function}
+
 \end{document}

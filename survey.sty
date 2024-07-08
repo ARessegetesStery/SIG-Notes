@@ -24,6 +24,7 @@
 \RequirePackage{xspace}
 \RequirePackage{enumitem}
 \RequirePackage[new]{old-arrows}
+\RequirePackage{changepage}
 \RequirePackage[backend=biber,style=alphabetic]{biblatex}
 
 \RequirePackage{thmtools}
@@ -212,6 +213,7 @@
 }
 
 \renewcommand{\sectionmark}[1]{\markboth{#1}{}}
+\newenvironment{paraindent}{\begin{adjustwidth}{0.5cm}{} \vspace*{1em}}{\end{adjustwidth}}
 
 % #1 General Title
 % #2 Subtitle
