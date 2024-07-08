@@ -196,9 +196,18 @@ Now we show the order of convergence:
     Now we seek to extend this to general convex sets. For each $P_i$ consider the point $\zeta_i \in \partial D$ where the minimum distance $\text{radius}(P_i)$ is realized. Let $\partial D_i$ be the tangent plane of $\partial D$ at $\zeta_i$, with the corresponding distance coordinate $y_{(\cdot)}^{(i)}$. Notice that $y_{i+1}^{(i)} \geq y_{i+1}^{(i+1)}$ by minimality. Therefore $y_{(\cdot)}^{(0)}$, which converges to 0 in $O(N)$ steps, gives an upper bound for number of steps required for convergence. This implies the actual convergence order is also $O(N)$. 
 \end{proof}
 
-\section{Boundary Value Caching for \emph{WoS} \cite{BVCWoS}}
+\begin{remark}
+    Notice that there are two major deficiencies for \emph{Walking on Sphere} method:
+    \begin{itemize}
+        \item The convergence order can only be proven for convex domains, whose proof relies heavily on the property that the whole domain lies on one side of the hyperplane.
+        \item The continuities of both boundary constraint $f$ and target function $u$ are not utilized.
+    \end{itemize}
+    These are the direction of improvements in the subsequent papers.
+\end{remark}
 
 \section{Walking on Stars \cite{WalkOnStars}}
+
+\section{Boundary Value Caching for \emph{WoS} \cite{BVCWoS}}
 
 \section{Extending \emph{WoSt} to Robin Boundary Conditions\cite{WalkinRobin}}
 
