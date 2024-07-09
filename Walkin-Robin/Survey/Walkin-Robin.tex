@@ -56,11 +56,11 @@ The followings are a collection some purely Mathematical definitions for formal 
     A \textbf{stochastic process} on a probability space $(\Omega, \mathcal{F}, \Pr)$ with a measurable space $(S, \Sigma)$ and index set $T$ (often time, subset of $\R$) is a collection of $S$-valued random variables with evaluations $\{ X(t) \mid t \in T \}$.
 \end{definition}
 
-\section{Solving Dirichlet Problems by ``Walk On Spheres'' \cite{WalkOnSphere}}
+\section{Solving Dirichlet Problems by the ``Spherical Process'' \cite{WalkOnSphere}}
 
 Due to the complexity of algebraic manipulation/approximation, some advanced results will be used as black box, and will be marked with {\color{darkpurple} purple}. Please refer to the original paper for details. Also, results with detailed proofs in the original paper will be reasoned with the ``intuitions''; and important results presented without proof in the paper will be explained in detail. 
 
-\begin{definition}[Harmonic Function]
+\begin{definition}[Harmonic Function]\label{def: harmonic function}
     A twice continuously differentiable $\R$-valued function $f: U \to \R$ is \textbf{harmonic} if $\nabla^2 f \equiv 0$ on $U$.
 \end{definition}
 \nogap
@@ -120,12 +120,12 @@ Notice that by the randomness defined in the Brownian motion, the distribution o
 
 It is then clear, that given a Brownian motion with random variable $\omega = \omega_0$ it corresponds uniquely to a spherical process with random variable $\phi = \phi(\omega_0)$; and vice versa. This allows application of the results proved for Brownian motion to obtain the solution of the Dirichlet problem; and use Monte Carlo methods on the spherical process for numerical quadrature.
 
-\subsection{Obtaining Solution from Spherical Process}
+\subsection{Obtaining Solution from the Spherical Process}
 
 \textstart
 The solution of the Dirichlet problem associated to function $f$ is computed directly using the following result. A complete context of the result can be found in \cite{Kakutani1944}. Notice that the ``measure'' in the integration involves the aforementioned Brownian motion. \hyperlink{https://willierushrush.github.io/posts/2021/08/dirichlet-problem}{This blog} provides a good excursion into the topic. 
 
-\begin{proposition}[Kakutani's Principle]
+\begin{proposition}[Kakutani's Principle \cite{KakutaniProof}]
     Given a Dirichlet problem defined on a domain $D$ with boundary values $f(\zeta)$ for $\zeta \in \partial D$, for any $x_0 \in D$, the solution $u$ of the Dirichlet problem evaluates to
     \[
         u(x_0) = \int_{\partial D} \Pr(x_0, \zeta, D) f(\zeta) \d \zeta \qquad \forall x_0 \in D
@@ -134,7 +134,57 @@ The solution of the Dirichlet problem associated to function $f$ is computed dir
 \end{proposition}
 
 \begin{proof}
-    {\color{red} TODO: check math stackexchange.}
+    In this proof we use without validation the result that every Dirichlet problem admits a unique solution (existence and uniqueness); and a function being harmonic is equivalent to conforming to the ``mean value property''. Details can be found in \hyperref[appendix A]{Appendix A}.
+
+    \begin{paraindent}
+        \begin{definition}[Mean Value Property]\label{def: mean value property}
+            A function $f$ with support $D \subset \R^N$ satisfies the \textbf{mean value property} if for all $r \in \R, x \in D$ s.t. $\mathcal{S}(x, r)$ (the radius-$r$ $N$-dimensional ball centered at $x$) is contained in $D$, the following equality is satisfied
+            \[
+                f(x) = \frac{1}{\abs{\partial \mathcal{S}(x, r)}}\int_{\partial \mathcal{S}(x, r)} f(\zeta) \d \zeta
+            \]
+            or equivalently, expressed using radians,
+            \[
+                f(x) = \frac{1}{2 \pi} \int_0^{2\pi} f(x + r e^{i \theta}) \d \theta 
+            \]
+        \end{definition}
+    \end{paraindent}
+
+    To prove the proposition given the assumptions on the function, we only need to further verify the following two properties:
+    \begin{enumerate}
+        \item The function $u$ is a harmonic function.
+        \item The function $u$ coincides with $f$ on $\partial D$.
+    \end{enumerate}
+
+    For the first property, prove using the equivalence with the mean value property: as we have mentioned, the Brownian motion is ``locally memory-less'', i.e. formally
+    \[
+        \E[B(t) \mid B(0) = x, B(t_0) = y] = \E[B(t - t_0) \mid B(0) = y]
+    \]
+    Use this transformation to verify the mean value property. Let $U = \mathcal{S}(x_0, r)$ be a ball centered at $x_0$, with radius $r$, and completely contained in $D$. Denote the point where a Brownian motion starting at $X(0, \omega) = x_0$ meet $\partial D$ ($\partial U$) for the first time by $P(x_0, \omega, D)$ ($P(x_0, \omega, U)$); and the corresponding time of encounter $T(x_0, \omega, D)$ ($T(x_0, \omega, U)$). By conditional probability with an argument of partition of unity we have
+    \[
+        u(x_0) = \int_{\partial D} \Pr(x_0, \zeta, D) f(\zeta) \d \zeta = \E[u(P(x_0, \omega, D))] = \frac{1}{\abs{\partial U}} \int_{\partial U} \E[f(P(x_0, \omega, D)) \mid P(x_0, \omega, U) = y]\ \d y
+    \]
+    Using the memory-less property, we have
+    \[
+        \frac{1}{\abs{\partial U}} \int_{\partial U} \E[f(P(x_0, \omega, D)) \mid P(x_0, \omega, U) = y]\ \d y = \frac{1}{\abs{\partial U}} \int_{\partial U} \E[ f(P(y, \omega, D)) ]\ \d y = \frac{1}{\abs{\partial U}} \int_{\partial U} u(y) \d y
+    \]
+    where the last equality results from the definition of $u$. 
+
+    Now verify that $u$ has boundary condition $f$ on $\partial D$, that is, equivalently, for all $\zeta \in \partial D$,
+    \[
+        \lim_{x \to \zeta, x \in D} \E[f(P(x, \omega, D))] = f(\zeta)
+        \quad \Longleftrightarrow \quad
+        \lim_{x \to \zeta, x \in D} \E[f(P(x, \omega, D)) - f(\zeta)] = 0
+    \]
+    since the expectation of a deterministic function is itself. Consider in turn a shrinking domain $S_r := \mathcal{S}(\zeta, r)$ with $r \to 0$. Adopting the same notation as above, we have
+    \begin{align*}
+        & \lim_{x \to \zeta, x \in D} \E[f(P(x, \omega, D)) - f(\zeta)] \\
+        = & \lim_{x \to \zeta, x \in D} \E[f(P(x, \omega, D)) - f(\zeta) \mid T(x, \omega, S_r) < T(x, \omega, D)] + \\
+        & \qquad \qquad \lim_{x \to \zeta, x \in D} \E[f(P(x, \omega, D)) - f(\zeta) \mid T(x, \omega, S_r) \geq T(x, \omega, D)] \\
+        \leq &\ \underbrace{\Pr[T(x, \omega, S_r) < T(x, \omega, D)]}_{(\ast)} \cdot (\abs{f(P(x, \omega, D))} + f(\zeta)) + \underbrace{\sup_{\eta \in S \cap \partial D} \abs{f(\eta) - f(\zeta)}}_{(\ast\ast)} \cdot \Pr[T(x, \omega, S_r) \geq T(x, \omega, D)]
+    \end{align*}
+    Now consider $x \in S_r$ with $r \to 0$. Then for $r \to 0$ with $x \to \zeta$, $(\ast) \to 0$; and for $r \to 0$ by continuity of $f$ $(\ast\ast) \to 0$. This gives $\lim_{x \to \zeta, x \in D} \E[f(P(x, \omega, D)) - f(\zeta)] = 0$; and thus the coincidence between $u$ and $f$ on $\partial D$.
+
+    {\color{red} TODO answer in mathexchange}
 \end{proof}
 
 \begin{remark}
@@ -213,6 +263,37 @@ Now we show the order of convergence:
 
 \printbibliography
 
-\section{Appendix A - Properties of Harmonic Function}
+\section{Appendix A - Existence of Solution to the Dirichlet Problem}\label{appendix A}
+
+First we prove the equivalence:
+
+\begin{proposition}
+    For a twice-differentiable function $f$ on a domain $D$, the following two statements are equivalent:
+    \begin{enumerate}
+        \item $f$ is \hyperref[def: harmonic function]{harmonic} on $D$.
+        \item $f$ satisfies the \hyperref[def: mean value property]{mean value property}.
+    \end{enumerate}
+\end{proposition}
+
+\begin{proof}
+    {\color{red} TODO}
+\end{proof}
+
+Now for the proof of Kakutani's Principle, we only need to show that every Dirichlet problem admits a unique solution:
+
+\begin{proposition}
+    For any regular domain $D$ with a continuous function $f$ defined on $\partial D$, the Dirichlet problem
+    \[
+        \begin{cases}
+            u(x) = f(x), \ \forall x \in \partial D \\
+            \Delta u(x) = 0, \ \forall x \in D
+        \end{cases}
+    \]
+    admits a unique solution
+\end{proposition}
+
+\begin{proof}
+    {\color{red} TODO}
+\end{proof}
 
 \end{document}
