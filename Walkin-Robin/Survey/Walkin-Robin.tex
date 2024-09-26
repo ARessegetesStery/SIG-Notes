@@ -85,7 +85,7 @@ Due to the complexity of algebraic manipulation/approximation, some advanced res
 \end{remark}
 \nogap
 \begin{notation}
-For simplicity, the evaluation of Brownian motion $B$ will be denoted as $X(t, \omega)$ with $\omega \in \R$ a random variable specifying the exact value of $B(t)$. That is, for $X(t, \omega) \in \R^N$. 
+For simplicity, the evaluation of Brownian motion $B$ will be denoted as $X(t, \omega)$ with $\omega \in \R$ a random variable specifying the exact value of $B(t)$. That is, for any $t \in \R$, $X(t, \omega) \in \R^N$. 
 \end{notation}
 
 \textstart
@@ -118,12 +118,12 @@ Notice that by the randomness defined in the Brownian motion, the distribution o
     \end{enumerate}
 \end{definition}
 
-It is then clear, that given a Brownian motion with random variable $\omega = \omega_0$ it corresponds uniquely to a spherical process with random variable $\phi = \phi(\omega_0)$; and vice versa. This allows application of the results proved for Brownian motion to obtain the solution of the Dirichlet problem; and use Monte Carlo methods on the spherical process for numerical quadrature.
+It is then clear, that given a Brownian motion with random variable $\omega = \omega_0$ it corresponds uniquely to a spherical process with random variable $\phi = \phi(\omega_0)$; and vice versa. This allows application of the results proven for Brownian motion to obtain the solution of the Dirichlet problem; and use Monte Carlo methods on the spherical process for numerical implementation.
 
 \subsection{Obtaining Solution from the Spherical Process}
 
 \textstart
-The solution of the Dirichlet problem associated to function $f$ is computed directly using the following result. A complete context of the result can be found in \cite{Kakutani1944}. Notice that the ``measure'' in the integration involves the aforementioned Brownian motion. \hyperlink{https://willierushrush.github.io/posts/2021/08/dirichlet-problem}{This blog} provides a good excursion into the topic. 
+The solution of the Dirichlet problem associated to function $f$ is computed directly using the following result. A complete context of the result can be found in \cite{Kakutani1944}. Notice that the ``measure'' in the integration involves the aforementioned Brownian motion. \href{https://willierushrush.github.io/posts/2021/08/dirichlet-problem}{This blog} provides a good excursion into the topic. 
 
 \begin{proposition}[Kakutani's Principle \cite{KakutaniProof}]
     Given a Dirichlet problem defined on a domain $D$ with boundary values $f(\zeta)$ for $\zeta \in \partial D$, for any $x_0 \in D$, the solution $u$ of the Dirichlet problem evaluates to
@@ -142,7 +142,7 @@ The solution of the Dirichlet problem associated to function $f$ is computed dir
             \[
                 f(x) = \frac{1}{\abs{\partial \mathcal{S}(x, r)}}\int_{\partial \mathcal{S}(x, r)} f(\zeta) \d \zeta
             \]
-            For $N = 2$, this can be equivalently expressed using radians:
+            For $N = 2$, this can be equivalently expressed using radians (angular parameterization):
             \[
                 f(x) = \frac{1}{2 \pi} \int_0^{2\pi} f(x + r e^{i \theta}) \d \theta 
             \]
@@ -159,7 +159,7 @@ The solution of the Dirichlet problem associated to function $f$ is computed dir
     \[
         \E[B(t) \mid B(0) = x, B(t_0) = y] = \E[B(t - t_0) \mid B(0) = y]
     \]
-    Use this transformation to verify the mean value property. Let $U = \mathcal{S}(x_0, r)$ be a ball centered at $x_0$, with radius $r$, and completely contained in $D$. Denote the point where a Brownian motion starting at $X(0, \omega) = x_0$ meet $\partial D$ ($\partial U$) for the first time by $P(x_0, \omega, D)$ ($P(x_0, \omega, U)$); and the corresponding time of encounter $T(x_0, \omega, D)$ ($T(x_0, \omega, U)$). By conditional probability with an argument of partition of unity we have
+    Use this transformation to verify the mean value property. Let $U = \mathcal{S}(x_0, r)$ be a ball centered at $x_0$, with radius $r$, and completely contained in $D$. Denote the point where a Brownian motion starting at $X(0, \omega) = x_0$ meet $\partial D$ (respectively $\partial U$) for the first time by $P(x_0, \omega, D)$ (respectively $P(x_0, \omega, U)$); and the corresponding time of encounter $T(x_0, \omega, D)$ (respectively $T(x_0, \omega, U)$). By conditional probability with an argument of partition of unity we have
     \[
         u(x_0) = \int_{\partial D} \Pr(x_0, \zeta, D) f(\zeta) \d \zeta = \E[u(P(x_0, \omega, D))] = \frac{1}{\abs{\partial U}} \int_{\partial U} \E[f(P(x_0, \omega, D)) \mid P(x_0, \omega, U) = y]\ \d y
     \]
