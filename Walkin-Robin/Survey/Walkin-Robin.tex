@@ -167,7 +167,7 @@ The solution of the Dirichlet problem associated to function $f$ is computed dir
     \[
         \frac{1}{\abs{\partial U}} \int_{\partial U} \E[f(P(x_0, \omega, D)) \mid P(x_0, \omega, U) = y]\ \d y = \frac{1}{\abs{\partial U}} \int_{\partial U} \E[ f(P(y, \omega, D)) ]\ \d y = \frac{1}{\abs{\partial U}} \int_{\partial U} u(y) \d y
     \]
-    where the last equality results from the definition of $u$. 
+    where the last equality results from interpreting the integral in $u$ as a weighted sum of evaluation with weight being the probability, i.e. the expectation. 
 
     Now verify that $u$ has boundary condition $f$ on $\partial D$, that is, equivalently, for all $\zeta \in \partial D$,
     \[
@@ -274,8 +274,11 @@ First we prove the equivalence:
 \begin{proposition}
     For a twice-differentiable function $f$ on a domain $D$, the following two statements are equivalent:
     \begin{enumerate}
-        \item $f$ is \hyperref[def: harmonic function]{harmonic} on $D$.
-        \item $f$ satisfies the \hyperref[def: mean value property]{mean value property}.
+        \item $f$ is \hyperref[def: harmonic function]{harmonic} on $D$, i.e. $\nabla^2 f = 0$.
+        \item $f$ satisfies the \hyperref[def: mean value property]{mean value property}, i.e.
+        \[
+            f(x) = \frac{1}{\abs{\partial \mathcal{S}(x, r)}}\int_{\partial \mathcal{S}(x, r)} f(\zeta) \d \zeta
+        \]
     \end{enumerate}
 \end{proposition}
 

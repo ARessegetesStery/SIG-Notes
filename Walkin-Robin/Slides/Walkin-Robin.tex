@@ -3,8 +3,8 @@
 \usepackage{../../presentation}
 
 \title{Walking On Stars \\[1pt] {\Large Grid-less Monte Carlo PDE Solver}}
-\author{ARessegetes Stery}
-\date{July 11, 2024}
+\author{Yuqi Meng}
+\date{Sept. 27, 2024}
 
 \begin{document}
 
@@ -26,7 +26,7 @@
 		\[
 			\begin{cases}
 				\Delta u = 0, & \text{ on D} \\
-				\left. u \right|_{\partial D} = f & \text{(Dirichlet)} \\
+				\left. u \right|_{\partial D} = f & \text{(Dirichlet BC)} \\
 			\end{cases}
 		\]
 	\end{definition}
@@ -207,6 +207,15 @@
 
 \end{frame}
 
+\begin{frame}{Outline of Generalization}
+	Extending from Dirichlet BC for the Dirichlet problem to arbitrary BC for any PDE, the algorithm needs to be modified in the following aspects:
+	\begin{itemize}
+		\item Generalize Kakutani's principle, taking into consideration of arbitrary differential operators.
+		\item Use different boundary treatments (for Dirichlet BC, this is just terminating the walk).
+		\item Generalize the Spherical Process to ensure convergence.
+	\end{itemize}
+\end{frame}
+
 \colortheme{lightpurple}
 
 \section{Boundary Treatments}
@@ -269,6 +278,9 @@
 	\end{figure}
 	Radius update is set in random direction, and intersection with Neumann part first, then spherical part.
 
+	\vspace*{1em}
+	\emph{Many intricate details here.}
+
 \end{frame}
 
 \begin{frame}{Robin BC}
@@ -279,6 +291,18 @@
 	High level idea: mimic the solution to path tracing. Interpolate between the radius for pure Dirichlet and pure Neumann for radius update, and apply Russian Roulette for early termination. This is possible as Robin BC contains information about Dirichlet BC.
 \end{frame}
 
+\begin{frame}{The Series of Works}
+	Foundation: 
+
+	Monte Carlo Geometry Processing: A Grid-Free Approach to PDE-Based Methods on Volumetric Domains (2020)
+
+	Subsequent Works:
+	% \vspace*{-0.5em}
+	\begin{figure}
+		\centering
+		\includegraphics[scale=0.25]{img/related-works.png}
+	\end{figure}
+\end{frame}
 
 % \colortheme{grey}
 
